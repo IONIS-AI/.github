@@ -30,7 +30,7 @@ IONIS-AI operates as a three-stage industrial data refinery, leveraging a hetero
 
 ---
 
-### **3. The Roadmap (Scaling to Claude Infrastructure)**
+### **3. The Roadmap ( Scaling to Cloude Infrastructure )**
 
 * **Phase 4.0:** Architectural Documentation & Feature Correlation Audit.
 * **Phase 5.0:** Distributed Scaling. Refactoring the `bulk-processor` for multi-node H100 clusters to enable real-time global ionospheric re-signatures.

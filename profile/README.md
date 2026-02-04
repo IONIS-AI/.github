@@ -6,16 +6,16 @@
 
 IONIS-AI operates as a three-stage industrial data refinery, leveraging a heterogeneous hardware stack to bridge the gap between raw radio telemetry and deep learning.
 
-**Stage 1: The Refinery (9975WX + RTX 6000)**
+**Stage 1: The Refinery ( 9975WX + RTX Pro 6000 Blackwell )**
 - **Function:** High-throughput CUDA-accelerated feature engineering.
 - **Workload:** Haversine distance calculations, Maidenhead-to-Coordinate transformation, and temporal joins with 3-hour solar weather indices (Kp/SFI).
 - **Throughput:** Steady **~4.7M rows/sec** via `clickhouse-cpp` native protocol.
 
-**Stage 2: The Vault (ClickHouse + Samsung 9100 NVMe)**
+**Stage 2: The Vault ( ClickHouse + Samsung 9100 NVMe )**
 - **Function:** High-density feature storage.
 - **Workload:** 10.8B row "Gold Layer" with Zstandard compression, optimized for sub-millisecond query latency across 11 HF bands.
 
-**Stage 3: The Oracle (M3 Ultra)**
+**Stage 3: The Oracle ( M3 Ultra )**
 - **Function:** Neural Inference Training.
 - **Workload:** PyTorch-based training of the **IONIS V2** model, utilizing refined embeddings to predict SNR and path quality based on real-time solar signatures.
 

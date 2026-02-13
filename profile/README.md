@@ -7,7 +7,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 ## What It Does
 
 - Predicts HF propagation (SNR) between any two points, any band, any time
-- Trained on the largest curated amateur radio propagation dataset on Earth
+- Trained on the largest curated amateur radio propagation dataset that we know of
 - Uses real-time solar flux (SFI) and geomagnetic (Kp) indices
 - Validated against VOACAP: Pearson +0.49 vs +0.02, 84% recall on independent live data
 

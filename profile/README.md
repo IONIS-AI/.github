@@ -1,5 +1,7 @@
 # IONIS-AI — Ionospheric Neural Inference System
 
+*The logs were speaking for decades, but nobody was listening. Now we're listening.* 
+
 IONIS is an open-source HF radio propagation prediction system trained on
 13+ billion amateur radio spots (WSPR, RBN, Contest, PSK Reporter). It predicts
 signal-to-noise ratio for any HF path on Earth using real-time solar conditions.

@@ -1,34 +1,54 @@
-## **IONIS-AI: High-Level Project Manifesto**
+# IONIS-AI — Ionospheric Neural Inference System
 
-> **Project Mission:** To engineer a high-fidelity, physics-grounded "Digital Twin" of the Earth's Ionosphere using the 10.8 billion data points of Solar Cycle 25.
+IONIS is an open-source HF radio propagation prediction system trained on
+13+ billion amateur radio spots (WSPR, RBN, Contest, PSK Reporter). It predicts
+signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 
-### **1. The Architecture (The "My Lab" Process)**
+## What It Does
 
-IONIS-AI operates as a three-stage industrial data refinery, leveraging a heterogeneous hardware stack to bridge the gap between raw radio telemetry and deep learning.
+- Predicts HF propagation (SNR) between any two points, any band, any time
+- Trained on the largest curated amateur radio propagation dataset on Earth
+- Uses real-time solar flux (SFI) and geomagnetic (Kp) indices
+- Outperforms VOACAP: Pearson +0.49 vs +0.02, 84% recall on independent live data
 
-**Stage 1: The Refinery ( 9975WX + RTX Pro 6000 Blackwell )**
-- **Function:** High-throughput CUDA-accelerated feature engineering.
-- **Workload:** Haversine distance calculations, Maidenhead-to-Coordinate transformation, and temporal joins with 3-hour solar weather indices (Kp/SFI).
-- **Throughput:** Steady **~4.7M rows/sec** via `clickhouse-cpp` native protocol.
+## Packages
 
-**Stage 2: The Vault ( ClickHouse + Samsung 9100 NVMe )**
-- **Function:** High-density feature storage.
-- **Workload:** 10.8B row "Gold Layer" with Zstandard compression, optimized for sub-millisecond query latency across 11 HF bands.
+| Package | Description |
+|---------|-------------|
+| [ionis-apps](https://github.com/IONIS-AI/ionis-apps) | Data ingesters (WSPR, RBN, Contest, PSK Reporter, Solar) and pipeline tools |
+| [ionis-core](https://github.com/IONIS-AI/ionis-core) | ClickHouse DDL schemas, population scripts, base configuration |
+| [ionis-cuda](https://github.com/IONIS-AI/ionis-cuda) | GPU-accelerated signature embedding engine (CUDA) |
+| [ionis-training](https://github.com/IONIS-AI/ionis-training) | PyTorch model training and sensitivity analysis |
+| [ionis-tools](https://github.com/IONIS-AI/ionis-tools) | Prediction CLI and REST API |
+| [ionis-docs](https://github.com/IONIS-AI/ionis-docs) | Documentation site |
 
-**Stage 3: The Oracle ( M3 Ultra )**
-- **Function:** Neural Inference Training.
-- **Workload:** PyTorch-based training of the **IONIS V2** model, utilizing refined embeddings to predict SNR and path quality based on real-time solar signatures.
+## Dataset
 
----
+| Source | Volume | Years |
+|--------|--------|-------|
+| WSPR | 10.8B spots | 2008–2025 |
+| Reverse Beacon Network | 2.18B spots | 2009–2025 |
+| CQ Contest Logs | 195M QSOs | 2005–2025 |
+| PSK Reporter | ~26M spots/day (live) | 2026+ |
 
-### **2. Current Project Status: Phase 3.7 Complete**
-- **Dataset:** 2020–2026 (Refined Signatures).
-- **Total Records:** ~3.45 Billion post-refinery signatures.
-- **Primary Bands:** 101–111 (160m through 10m).
-- **Infrastructure:** COPR-based RPM deployments for cross-platform hardware parity.
+## Model
 
----
+**IONIS V20** (Production) — 203K parameter PyTorch model with physics-constrained
+solar and geomagnetic sidecars.
 
-### **3. The Roadmap ( Scaling to Cloud Infrastructure )**
-- **Phase 4.0:** Architectural Documentation & Feature Correlation Audit.
-- **Phase 5.0:** Distributed Scaling. Refactoring the `bulk-processor` for multi-node H100 clusters to enable real-time global ionospheric re-signatures.
+| Metric | IONIS V20 | VOACAP |
+|--------|-----------|--------|
+| Pearson correlation | **+0.49** | +0.02 |
+| Live recall (PSK Reporter) | **84%** | — |
+
+## Install
+
+```bash
+# Rocky Linux 9 / RHEL 9 (via COPR)
+dnf copr enable ki7mt/ionis-ai
+dnf install ionis-apps ionis-core
+```
+
+## License
+
+GPLv3 — See individual repositories for details.

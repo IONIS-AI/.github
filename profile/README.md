@@ -1,6 +1,6 @@
 # IONIS-AI — Ionospheric Neural Inference System
 
-*The logs were speaking for decades, but nobody was listening. Now we're listening.* 
+*The logs were speaking for decades, but nobody was listening. Now we're listening.*
 
 IONIS is an open-source HF radio propagation prediction system trained on
 13+ billion amateur radio spots (WSPR, RBN, Contest, PSK Reporter). It predicts
@@ -21,6 +21,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 | [ionis-core](https://github.com/IONIS-AI/ionis-core) | ClickHouse DDL schemas, population scripts, base configuration |
 | [ionis-cuda](https://github.com/IONIS-AI/ionis-cuda) | GPU-accelerated signature embedding engine (CUDA) |
 | [ionis-training](https://github.com/IONIS-AI/ionis-training) | PyTorch model training and sensitivity analysis |
+| [ionis-validate](https://github.com/IONIS-AI/ionis-validate) | Model validation suite ([PyPI](https://pypi.org/project/ionis-validate/)) |
 | [ionis-tools](https://github.com/IONIS-AI/ionis-tools) | Prediction CLI and REST API |
 | [ionis-docs](https://github.com/IONIS-AI/ionis-docs) | Documentation site |
 
@@ -49,6 +50,9 @@ solar and geomagnetic sidecars.
 # Rocky Linux 9 / RHEL 9 (via COPR)
 dnf copr enable ki7mt/ionis-ai
 dnf install ionis-apps ionis-core
+
+# Model validation (any platform, via PyPI)
+pip install ionis-validate
 ```
 
 ## License

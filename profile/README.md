@@ -16,7 +16,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 ## Packages
 
 | Package | Language | Description |
-|---------|----------|-------------|
+|:--------|:---------|:------------|
 | [ionis-apps](https://github.com/IONIS-AI/ionis-apps) | Go | Data ingesters (WSPR, RBN, Contest, PSK Reporter, Solar) with idempotent watermark tracking |
 | [ionis-core](https://github.com/IONIS-AI/ionis-core) | SQL/Shell | 34 ClickHouse DDL schemas, 13 population scripts, base configuration |
 | [ionis-cuda](https://github.com/IONIS-AI/ionis-cuda) | C++/CUDA | GPU-accelerated signature embedding engine |
@@ -28,7 +28,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 ## Dataset
 
 | Source | Volume | Years |
-|--------|--------|-------|
+|:-------|:-------|:------|
 | WSPR | 10.8B spots | 2008–2025 |
 | Reverse Beacon Network | 2.18B spots | 2009–2025 |
 | CQ Contest Logs | 195M QSOs | 2005–2025 |
@@ -40,7 +40,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 solar and geomagnetic sidecars.
 
 | Metric | IONIS V20 | VOACAP |
-|--------|-----------|--------|
+|:-------|:----------|:-------|
 | Pearson correlation | **+0.49** | +0.02 |
 | Live recall (PSK Reporter) | **84%** | — |
 
@@ -51,13 +51,13 @@ watermark tracking. Downloaders write to disk, ingesters load into ClickHouse.
 All ingesters support `--full`, `--prime`, and `--dry-run` modes.
 
 | Source | Downloader | Ingester | Schedule |
-|--------|-----------|----------|----------|
+|:-------|:-----------|:---------|:---------|
 | WSPR | `wspr-download` | `wspr-turbo` | Daily |
 | RBN | `rbn-download` | `rbn-ingest` | Daily |
 | Contest | `contest-download` | `contest-ingest` | Weekly |
 | PSK Reporter | `pskr-collector` | `pskr-ingest` | Hourly |
 | Solar | `solar-download` | `solar-ingest` | 15 min / 6 hr |
-| DSCOVR L1 | — | `dscovr-ingest` | 15 min |
+| DSCOVR L1 | `dscovr-ingest` | `dscovr-ingest` | 15 min |
 
 ## Install
 

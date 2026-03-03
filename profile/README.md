@@ -22,6 +22,7 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 | [ionis-cuda](https://github.com/IONIS-AI/ionis-cuda) | C++/CUDA | GPU-accelerated signature embedding engine |
 | [ionis-training](https://github.com/IONIS-AI/ionis-training) | Python | PyTorch model training, sensitivity analysis, version lifecycle |
 | [ionis-mcp](https://github.com/IONIS-AI/ionis-mcp) | Python | MCP server for AI-assisted propagation analytics ([PyPI](https://pypi.org/project/ionis-mcp/)) |
+| [ionis-jupyter](https://github.com/IONIS-AI/ionis-jupyter) | Python/Jupyter | Interactive notebooks for propagation research — 10 starter notebooks |
 | [ionis-validate](https://github.com/IONIS-AI/ionis-validate) | Python | Model validation CLI ([PyPI](https://pypi.org/project/ionis-validate/)) |
 | [ionis-hamstats](https://github.com/IONIS-AI/ionis-hamstats) | Python/MkDocs | [ham-stats.com](https://ham-stats.com) — live HF propagation reports |
 | [ionis-docs](https://github.com/IONIS-AI/ionis-docs) | MkDocs | [Documentation site](https://ionis-ai.github.io/ionis-docs/) |

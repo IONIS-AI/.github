@@ -21,18 +21,24 @@ signal-to-noise ratio for any HF path on Earth using real-time solar conditions.
 | [ionis-core](https://github.com/IONIS-AI/ionis-core) | SQL/Shell | 36 ClickHouse DDL schemas, 15 population scripts, base configuration |
 | [ionis-cuda](https://github.com/IONIS-AI/ionis-cuda) | C++/CUDA | GPU-accelerated signature embedding engine |
 | [ionis-training](https://github.com/IONIS-AI/ionis-training) | Python | PyTorch model training, sensitivity analysis, version lifecycle |
+| [ionis-mcp](https://github.com/IONIS-AI/ionis-mcp) | Python | MCP server for AI-assisted propagation analytics ([PyPI](https://pypi.org/project/ionis-mcp/)) |
 | [ionis-validate](https://github.com/IONIS-AI/ionis-validate) | Python | Model validation CLI ([PyPI](https://pypi.org/project/ionis-validate/)) |
 | [ionis-hamstats](https://github.com/IONIS-AI/ionis-hamstats) | Python/MkDocs | [ham-stats.com](https://ham-stats.com) — live HF propagation reports |
 | [ionis-docs](https://github.com/IONIS-AI/ionis-docs) | MkDocs | [Documentation site](https://ionis-ai.github.io/ionis-docs/) |
 
-## Dataset
+## Datasets
 
-| Source | Volume | Years |
-|:-------|:-------|:------|
-| WSPR | 10.9B spots | 2008–2026 |
-| Reverse Beacon Network | 2.26B spots | 2009–2026 |
-| CQ Contest Logs | 234M QSOs | 2005–2025 |
-| PSK Reporter | ~26M spots/day (live) | 2026+ |
+175M+ aggregated propagation signatures derived from 14 billion observations,
+distributed as SQLite files on [SourceForge](https://sourceforge.net/projects/ionis-ai/).
+
+| Source | Signatures | Raw Observations | Years |
+|:-------|:-----------|:-----------------|:------|
+| WSPR | 93.6M | 10.9B beacon spots | 2008–2026 |
+| Reverse Beacon Network | 67.3M | 2.26B CW/RTTY spots | 2009–2026 |
+| CQ Contest Logs | 5.7M | 234M SSB/RTTY QSOs | 2005–2025 |
+| DXpeditions | 260K | 3.9M rare-grid paths | 2009–2025 |
+| PSK Reporter | 8.4M | 514M+ FT8/WSPR spots | 2026+ |
+| Solar Indices | — | 77K daily/3-hour records | 2000–2026 |
 
 ## Model
 
@@ -65,12 +71,16 @@ All ingesters support `--full`, `--prime`, and `--dry-run` modes.
 ## Install
 
 ```bash
-# Rocky Linux 9 / RHEL 9 (via COPR)
-dnf copr enable ki7mt/ionis-ai
-dnf install ionis-apps ionis-core
+# AI-assisted propagation analytics (any platform, via PyPI)
+pip install ionis-mcp
+ionis-download --bundle minimal   # ~430 MB — contest + solar + grids
 
 # Model validation (any platform, via PyPI)
 pip install ionis-validate
+
+# Rocky Linux 9 / RHEL 9 (via COPR)
+dnf copr enable ki7mt/ionis-ai
+dnf install ionis-apps ionis-core
 ```
 
 ## License
